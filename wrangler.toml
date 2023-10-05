@@ -9,6 +9,10 @@ binding = "AI"
 binding = "ASSISTANT_KV"
 id = "4a05d596cd474fdea27f2b55fcdff28a"
 
+[[services]]
+binding = "TRANSLATOR"
+service = "telegram-assistant-translator"
+
 
 
 # Variable bindings. These are arbitrary, plaintext strings (similar to environment variables)
