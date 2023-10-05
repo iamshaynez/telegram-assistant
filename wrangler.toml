@@ -2,6 +2,15 @@ name = "telegram-assistant"
 main = "src/index.js"
 compatibility_date = "2023-10-02"
 
+[ai]
+binding = "AI"
+
+[[kv_namespaces]]
+binding = "ASSISTANT_KV"
+id = "4a05d596cd474fdea27f2b55fcdff28a"
+
+
+
 # Variable bindings. These are arbitrary, plaintext strings (similar to environment variables)
 # Note: Use secrets to store sensitive data.
 # Docs: https://developers.cloudflare.com/workers/platform/environment-variables
