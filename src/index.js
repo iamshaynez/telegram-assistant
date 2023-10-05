@@ -1,5 +1,5 @@
 import { initEnv, ASSISTANT_KV } from "./env.js";
-import { renderHTML, errorToString, assistantMessage } from "./utils.js";
+import { errorToString, assistantMessage } from "./utils.js";
 import { sendMessage } from "./telegram.js";
 import { handleRequest } from "./router.js";
 
