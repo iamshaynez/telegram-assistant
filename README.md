@@ -8,6 +8,10 @@
 
 详细说明见博客[文章](https://xiaowenz.com/blog/2023/10/modal-serverless-tg-bot/)
 
+通过 Bot Menu 选择和切换应用，并通过对话进行交互。交互方式如下图：
+
+![image.png](https://vip2.loli.io/2023/10/06/PAq2KCF8iaYXIvw.png)
+
 ## 说明
 
 ### 本服务
