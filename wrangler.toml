@@ -13,6 +13,9 @@ id = "4a05d596cd474fdea27f2b55fcdff28a"
 binding = "TRANSLATOR"
 service = "telegram-assistant-translator"
 
+[[services]]
+binding = "COUNTER"
+service = "telegram-assistant-counter"
 
 
 # Variable bindings. These are arbitrary, plaintext strings (similar to environment variables)

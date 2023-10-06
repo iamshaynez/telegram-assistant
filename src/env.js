@@ -17,6 +17,7 @@ export const CONST = {
         "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.2 Safari/605.1.15",
 };
 
+export const ASSISTANT_APP_NAME = "小助手网关";
 
 export let AI = null;
 export let ASSISTANT_KV = null;
