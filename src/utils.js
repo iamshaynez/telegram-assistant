@@ -12,3 +12,4 @@ export function errorToString(e) {
 export function assistantMessage(text, appName = ASSISTANT_APP_NAME) {
     return `>> 小助手消息: 来自 [${appName}]\r\n\r\n${text}`;
 }
+

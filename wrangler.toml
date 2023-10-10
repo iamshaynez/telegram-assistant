@@ -17,6 +17,10 @@ service = "telegram-assistant-translator"
 binding = "COUNTER"
 service = "telegram-assistant-counter"
 
+[[services]]
+binding = "LLM"
+service = "telegram-assistant-llm"
+
 
 # Variable bindings. These are arbitrary, plaintext strings (similar to environment variables)
 # Note: Use secrets to store sensitive data.
