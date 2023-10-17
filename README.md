@@ -29,7 +29,7 @@ Value = {"appCode": "counter", "appName": "打卡助手"}
 
 手工调用 
 ```
-https://api.telegram.org/bot{my_bot_token}/setWebhook?url={url_to_send_updates_to}
+https://api.telegram.org/bot{my_bot_token}/setWebhook?url={url_to_send_updates_to}&secret_token={tg_secret_token}
 ```
 
 #### TelegramBot 的菜单需要手工添加和配置。
@@ -40,6 +40,7 @@ https://api.telegram.org/bot{my_bot_token}/setWebhook?url={url_to_send_updates_t
 
 - TG_BOT_TOKEN
 - TG_CHAT_ID
+- TG_SECRET_TOKEN: 1-256 位 Token，用来做鉴权认证。
 
 ### 依赖服务
 

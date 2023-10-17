@@ -1,6 +1,7 @@
 const ENV_VALUE_TYPE = {
     TG_BOT_TOKEN: "string",
     TG_CHAT_ID: "string",
+    TG_SECRET_TOKEN: "string",
 };
 
 export const ENV = {
@@ -8,7 +9,9 @@ export const ENV = {
     TG_BOT_TOKEN: null,
     // Telegram Bot Chat send messages to
     TG_CHAT_ID: null,
-    // 本地调试专用
+    // Telegram Secret Token
+    TG_SECRET_TOKEN: null,
+
     TELEGRAM_API_DOMAIN: "https://api.telegram.org",
 };
 

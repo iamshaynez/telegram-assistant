@@ -1,13 +1,34 @@
-import { initEnv, ASSISTANT_KV, ASSISTANT_APP_NAME } from "./env.js";
+import { initEnv, ASSISTANT_KV, ASSISTANT_APP_NAME, ENV } from "./env.js";
 import { errorToString, assistantMessage } from "./utils.js";
 import { sendMessage } from "./telegram.js";
 import { getAppName, handleRequest, getCurrentAppName } from "./app.js";
 
 export default {
     async fetch(request, env) {
-        let requestClone = null;
+        // pre-load headers and authenticate with token
         try {
             initEnv(env);
+            let headers = parseHeaders(request);
+            const secret_token = headers["x-telegram-bot-api-secret-token"];
+            
+            if (ENV.TG_SECRET_TOKEN === secret_token) {
+                console.log(`Authentication successful...`);
+            } else {
+                console.log(
+                    `Authentication failed with ${secret_token} recieved...`
+                );
+                return new Response("Authentication failed, dropped.", {
+                    status: 200,
+                });
+            }
+        } catch (e) {
+            return new Response("dropped.", { status: 200 });
+        }
+
+        // process request. request load happens here.
+        let requestClone = null;
+
+        try {
             requestClone = request.clone();
             const body = await request.json();
             const text = body.message.text;
@@ -16,9 +37,9 @@ export default {
                 const appCode = parseApp(text);
                 await ASSISTANT_KV.put("MODE", appCode);
                 const appName = await getAppName(appCode);
-				await sendMessage(
-					assistantMessage(`切换当前助手程序为[${appName}]`)
-				);
+                await sendMessage(
+                    assistantMessage(`切换当前助手程序为[${appName}]`)
+                );
             }
 
             if (current_app === null) {
@@ -32,8 +53,8 @@ export default {
                     current_app,
                     env
                 );
-				
-				const appName = await getCurrentAppName();
+
+                const appName = await getCurrentAppName();
                 await sendMessage(assistantMessage(message, appName));
                 return new Response(message, { status: 200 });
             }
@@ -59,4 +80,15 @@ function parseApp(str) {
         return str.substring(1, index);
     }
     return str.substring(1);
+}
+
+function parseHeaders(request) {
+    let headers = {};
+    let keys = new Map(request.headers).keys();
+    let key;
+    while ((key = keys.next().value)) {
+        headers[key] = request.headers.get(key);
+        console.log(`key=[${key}],value=[${headers[key]}]`)
+    }
+    return headers;
 }
