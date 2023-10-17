@@ -16,13 +16,30 @@
 
 ### 本服务
 
-- 依赖 Cloudflare 的 KV 存储。
-- KV 中的部分 Metadata 需要手工添加，不添加现在也是工作的，只是丑一点。
-- 需要开启 Worker 的 Router 并绑定在 TelegramBot 的 Webhook 上。
-- TelegramBot 的菜单需要手工添加和配置。
-- 需要配置环境变量（加密）
-  - TG_BOT_TOKEN
-  - TG_CHAT_ID
+#### 依赖 Cloudflare 的 KV 存储。KV 中的部分 Metadata 需要手工添加，不添加现在也是工作的，只是丑一点。
+
+**MetaData 范例：**
+
+```
+Key = APP-COUNTER
+Value = {"appCode": "counter", "appName": "打卡助手"}
+```
+
+#### 需要开启 Worker 的 Router 并绑定在 TelegramBot 的 Webhook 上。
+
+手工调用 
+```
+https://api.telegram.org/bot{my_bot_token}/setWebhook?url={url_to_send_updates_to}
+```
+
+#### TelegramBot 的菜单需要手工添加和配置。
+
+在 BotFather -> Edit Bot 中添加需要的应用服务的命令和名称
+
+#### Cloudflare Dashboard 中添加以下环境变量（加密）
+
+- TG_BOT_TOKEN
+- TG_CHAT_ID
 
 ### 依赖服务
 
