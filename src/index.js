@@ -88,7 +88,7 @@ function parseHeaders(request) {
     let key;
     while ((key = keys.next().value)) {
         headers[key] = request.headers.get(key);
-        console.log(`key=[${key}],value=[${headers[key]}]`)
+        //console.log(`key=[${key}],value=[${headers[key]}]`)
     }
     return headers;
 }
