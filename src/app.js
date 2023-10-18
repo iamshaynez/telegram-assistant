@@ -32,10 +32,10 @@ export async function getCurrentAppName() {
 }
 
 // 入口方法，所有的流量由这个方法处置和调用
+// 当前约定{message: string, photos: array_string_of_urls}
+// photos optional
 export async function handleRequest(request, current_app, env) {
     console.log(`forward request to app-${current_app}`);
     const res = await env[current_app.toUpperCase()].fetch(request);
-    const message = JSON.parse(await res.text()).message;
-
-    return message;
+    return JSON.parse(await res.text());
 }

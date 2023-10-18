@@ -1,6 +1,6 @@
 import { initEnv, ASSISTANT_KV, ASSISTANT_APP_NAME, ENV } from "./env.js";
 import { errorToString, assistantMessage } from "./utils.js";
-import { sendMessage } from "./telegram.js";
+import { sendMessage, sendMessageWithPhotos } from "./telegram.js";
 import { getAppName, handleRequest, getCurrentAppName } from "./app.js";
 
 export default {
@@ -10,7 +10,7 @@ export default {
             initEnv(env);
             let headers = parseHeaders(request);
             const secret_token = headers["x-telegram-bot-api-secret-token"];
-            
+
             if (ENV.TG_SECRET_TOKEN === secret_token) {
                 console.log(`Authentication successful...`);
             } else {
@@ -48,15 +48,24 @@ export default {
             }
 
             if (!text.startsWith(`/`)) {
-                const message = await handleRequest(
+                const jsonObject = await handleRequest(
                     requestClone,
                     current_app,
                     env
                 );
 
                 const appName = await getCurrentAppName();
-                await sendMessage(assistantMessage(message, appName));
-                return new Response(message, { status: 200 });
+                console.log(`json reply ${jsonObject["message"]}, string ${JSON.stringify(jsonObject)}`)
+
+                if (jsonObject.hasOwnProperty("photos")) {
+                    await sendMessageWithPhotos(
+                        assistantMessage(jsonObject["message"], appName),
+                        jsonObject["photos"]
+                    );
+                } else {
+                    await sendMessage(assistantMessage(jsonObject["message"], appName));
+                }
+                return new Response(jsonObject["message"], { status: 200 });
             }
 
             return new Response("COMPLETED", { status: 200 });
