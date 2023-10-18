@@ -64,7 +64,7 @@ service = "telegram-assistant-counter"
 - [翻译小助手](https://github.com/iamshaynez/telegram-assistant-translator) 基于 CF AI 模型 
 - [LLama-2-7b](https://github.com/iamshaynez/telegram-assistant-llm) 基于 @cf/meta/llama-2-7b-chat-int8
 - [智谱AI ChatGLM](https://github.com/iamshaynez/telegram-assistant-zhipu)  基于 ChatGLM Std
-
+- [Bing Image Creator](https://github.com/iamshaynez/telegram-assistant-bingimage)  基于 Bing DALLE-3
 
 ## 待办
 
