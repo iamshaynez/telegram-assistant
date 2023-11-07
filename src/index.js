@@ -47,6 +47,9 @@ export default {
                 await sendMessage(assistantMessage("请先选择一个助手程序"));
             }
 
+            // jsonObject standard format
+            // message: text
+            // photos: list of image object => image { url: "", text: ""} //  later to change
             if (!text.startsWith(`/`)) {
                 const jsonObject = await handleRequest(
                     requestClone,
@@ -55,7 +58,11 @@ export default {
                 );
 
                 const appName = await getCurrentAppName();
-                console.log(`json reply ${jsonObject["message"]}, string ${JSON.stringify(jsonObject)}`)
+                console.log(
+                    `json reply ${
+                        jsonObject["message"]
+                    }, string ${JSON.stringify(jsonObject)}`
+                );
 
                 if (jsonObject.hasOwnProperty("photos")) {
                     await sendMessageWithPhotos(
@@ -63,7 +70,9 @@ export default {
                         jsonObject["photos"]
                     );
                 } else {
-                    await sendMessage(assistantMessage(jsonObject["message"], appName));
+                    await sendMessage(
+                        assistantMessage(jsonObject["message"], appName)
+                    );
                 }
                 return new Response(jsonObject["message"], { status: 200 });
             }
